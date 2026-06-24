@@ -12,8 +12,8 @@ RUN pip install --no-cache-dir uv
 # Copy dependency manifest first (layer cache optimization)
 COPY pyproject.toml ./
 
-# Install production dependencies (skip dev group)
-RUN uv sync --no-group dev
+# Install production dependencies (source is copied in the next layer)
+RUN uv sync --no-group dev --no-install-project
 
 # Copy source code and configs
 COPY src/ ./src/
