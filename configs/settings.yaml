@@ -1,0 +1,9 @@
+duckdb_path: "data/retailpulse.duckdb"
+log_level: "INFO"
+api_host: "0.0.0.0"
+api_port: 8000
+sample_data_path: "data/sample/sample_transactions.csv"
+rfm_n_clusters: 4
+mba_min_support: 0.02
+mba_min_confidence: 0.1
+top_n_default: 10
