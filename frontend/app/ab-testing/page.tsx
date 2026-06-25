@@ -23,7 +23,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { KPICard } from '@/components/cards/KPICard'
 import { useExperiments, useExperimentResults, useExperimentSummary } from '@/hooks/useApi'
 import { FlaskConical, CheckCircle2, XCircle, Calculator, Plus, RefreshCw, Play, Pause, RotateCcw } from 'lucide-react'
-import { apiFetch } from '@/lib/api'
+import { apiFetch, buildApiUrl } from '@/lib/api'
 import { useI18n } from '@/contexts/I18nContext'
 import { useQueryClient } from '@tanstack/react-query'
 import { cn } from '@/lib/utils'
@@ -774,8 +774,7 @@ export default function ABTestingPage() {
     setDemoError(null)
     setDemoProgress(0)
     try {
-      const API = '/api'
-      const res = await fetch(`${API}/ab/experiments`, {
+      const res = await fetch(buildApiUrl('/ab/experiments'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -797,7 +796,7 @@ export default function ABTestingPage() {
           const variant = idx % 2 === 0 ? 'control' : 'treatment'
           const converted =
             variant === 'control' ? Math.random() < 0.05 : Math.random() < 0.08
-          const eventRes = await fetch(`${API}/ab/events`, {
+          const eventRes = await fetch(buildApiUrl('/ab/events'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -816,7 +815,7 @@ export default function ABTestingPage() {
 
       // Run statistical analysis
       const analyzeRes = await fetch(
-        `${API}/ab/experiments/${expId}/analyze?metric=conversion_rate`,
+        buildApiUrl(`/ab/experiments/${expId}/analyze`, { metric: 'conversion_rate' }),
         { method: 'POST' },
       )
       if (!analyzeRes.ok) throw new Error(`統計分析失敗：${analyzeRes.status}`)

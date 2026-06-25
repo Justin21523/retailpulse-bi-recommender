@@ -1,8 +1,9 @@
 // API client — 所有 HTTP 請求都從這裡走
-// Use /api prefix so Next.js rewrites proxy it to FastAPI (avoids cross-origin issues)
-const API_BASE = '/api';
+// Use the deployed base path when the app is mounted below /p/<project>.
+const APP_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const API_BASE = `${APP_BASE_PATH}/api`;
 
-function buildUrl(path: string, params?: Record<string, string | number | undefined>): string {
+export function buildApiUrl(path: string, params?: Record<string, string | number | undefined>): string {
   let url = `${API_BASE}${path}`;
   if (params) {
     const sp = new URLSearchParams();
@@ -19,7 +20,7 @@ export async function apiFetch<T>(
   path: string,
   params?: Record<string, string | number | undefined>,
 ): Promise<T> {
-  const res = await fetch(buildUrl(path, params), {
+  const res = await fetch(buildApiUrl(path, params), {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
@@ -35,7 +36,7 @@ export async function apiFetch<T>(
 export async function apiPostFile<T>(path: string, file: File): Promise<T> {
   const formData = new FormData();
   formData.append('file', file);
-  const res = await fetch(buildUrl(path), { method: 'POST', body: formData });
+  const res = await fetch(buildApiUrl(path), { method: 'POST', body: formData });
   if (!res.ok) {
     const text = await res.text().catch(() => '');
     throw new Error(`API ${res.status}: ${path} — ${text}`);
@@ -44,7 +45,7 @@ export async function apiPostFile<T>(path: string, file: File): Promise<T> {
 }
 
 export async function apiPostJSON<T>(path: string, body?: object): Promise<T> {
-  const res = await fetch(buildUrl(path), {
+  const res = await fetch(buildApiUrl(path), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: body ? JSON.stringify(body) : undefined,

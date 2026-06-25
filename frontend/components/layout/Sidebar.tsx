@@ -22,13 +22,14 @@ import { cn } from '@/lib/utils'
 import { useI18n } from '@/contexts/I18nContext'
 import { LanguageToggle } from './LanguageToggle'
 import { AboutModal } from './AboutModal'
+import { buildApiUrl } from '@/lib/api'
 
 function ApiStatusDot() {
   const [healthy, setHealthy] = useState<boolean | null>(null)
   const { t } = useI18n()
 
   useEffect(() => {
-    fetch('/api/health')
+    fetch(buildApiUrl('/health'))
       .then((r) => setHealthy(r.ok))
       .catch(() => setHealthy(false))
   }, [])
