@@ -199,6 +199,19 @@ Result: `2 passed` covering desktop feature flows, mobile navigation, screenshot
 
 Verified areas include dashboard navigation, upload sample flow, customer search/profile/recommendation jump, basket filters, recommendation tabs, forecast controls, ML insight tabs, A/B demo creation, tour page, and mobile route navigation.
 
+## Remote Deployment Verification
+
+Remote smoke verification was run on June 25, 2026 against the deployed portfolio and live app:
+
+- Portfolio archive: https://neojustin.dothost.net/zh-TW/projects/all/
+- Portfolio detail: https://neojustin.dothost.net/zh-TW/projects/retailpulse-bi-recommender/
+- Live app: https://neojustin.dothost.net/p/retailpulse-bi-recommender/
+- API health: https://neojustin.dothost.net/p/retailpulse-bi-recommender/api/health
+
+Result: all checked routes returned HTTP 200 and matched expected page text. Screenshots and the route result JSON are stored in [`docs/playwright/remote-smoke`](docs/playwright/remote-smoke).
+
+Verified remote routes include portfolio archive, portfolio detail, dashboard, customers, basket, recommendations, forecast, ML insights, A/B testing, tour, and API health.
+
 ## Limitations and Future Work
 
 **Current limitations:**

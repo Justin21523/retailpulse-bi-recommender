@@ -1,0 +1,79 @@
+[
+  {
+    "name": "portfolio-all",
+    "url": "https://neojustin.dothost.net/zh-TW/projects/all/",
+    "status": 200,
+    "ok": true,
+    "textSample": "Justin 關於我 作品集 技術專區 聯絡我 搜尋作品 K English 淺色 Command Palette Search for a command to run... PROJECT ARCHIVE 瀏覽所有作品 用 Metadata、技術、領域、平台、狀態與能力證據檢索作品，而不是只看作品卡片。 "
+  },
+  {
+    "name": "portfolio-detail",
+    "url": "https://neojustin.dothost.net/zh-TW/projects/retailpulse-bi-recommender/",
+    "status": 200,
+    "ok": true,
+    "textSample": "Justin 關於我 作品集 技術專區 聯絡我 搜尋作品 K English 淺色 Command Palette Search for a command to run... 返回作品典藏庫 已完成 2026 ai-data RetailPulse BI Recommender 零售商業智慧、推薦系統與 ML "
+  },
+  {
+    "name": "app-dashboard",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI 業務總覽 UCI 線上零售 · 4,33"
+  },
+  {
+    "name": "app-customers",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/customers",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI 客戶分析 RFM 分群 · 客戶生命週期"
+  },
+  {
+    "name": "app-basket",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/basket",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI 購物籃分析 Apriori + FP-G"
+  },
+  {
+    "name": "app-recommendations",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/recommendations",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI 智慧推薦 ALS 協同過濾 · Thom"
+  },
+  {
+    "name": "app-forecast",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/forecast",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI 銷售預測 時序預測模型 · SARIMA"
+  },
+  {
+    "name": "app-ml-insights",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/ml-insights",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI ML 洞察中心 Deep Learnin"
+  },
+  {
+    "name": "app-ab-testing",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/ab-testing",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI A/B 測試框架 統計顯著性 · z-t"
+  },
+  {
+    "name": "app-tour",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/tour",
+    "status": 200,
+    "ok": true,
+    "textSample": "RetailPulse BI 分析平台 資料上傳儀表板客戶分析留存分析購物籃智慧推薦銷售預測ML 洞察A/B 測試功能導覽 About this project 中文EN 連線確認中… v0.3.0 · UCI Online Retail RetailPulse BI RetailPulse BI 零售智慧分"
+  },
+  {
+    "name": "app-api-health",
+    "url": "https://neojustin.dothost.net/p/retailpulse-bi-recommender/api/health",
+    "status": 200,
+    "ok": true,
+    "textSample": "{\"status\":\"ok\",\"version\":\"0.3.0\",\"timestamp\":\"2026-06-25T05:53:36.469554+00:00\"}"
+  }
+]
