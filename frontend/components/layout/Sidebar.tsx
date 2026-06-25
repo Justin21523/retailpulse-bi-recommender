@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
@@ -23,6 +22,7 @@ import { useI18n } from '@/contexts/I18nContext'
 import { LanguageToggle } from './LanguageToggle'
 import { AboutModal } from './AboutModal'
 import { buildApiUrl } from '@/lib/api'
+import { appPathname, publicPath } from '@/lib/paths'
 
 function ApiStatusDot() {
   const [healthy, setHealthy] = useState<boolean | null>(null)
@@ -59,7 +59,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
-  const pathname = usePathname()
+  const pathname = appPathname(usePathname())
   const { t } = useI18n()
   const [aboutOpen, setAboutOpen] = useState(false)
 
@@ -119,9 +119,9 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
           const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
           return (
-            <Link
+            <a
               key={href}
-              href={href}
+              href={publicPath(href)}
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
                 active
@@ -131,7 +131,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             >
               <Icon className="h-4 w-4 shrink-0" />
               {label}
-            </Link>
+            </a>
           )
         })}
       </nav>

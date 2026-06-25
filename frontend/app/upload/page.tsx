@@ -22,6 +22,7 @@ import { RecommendationStage }  from '@/components/journey/stages/Recommendation
 import { ABStage }              from '@/components/journey/stages/ABStage'
 import { InsightStage }         from '@/components/journey/stages/InsightStage'
 import { useI18n }              from '@/contexts/I18nContext'
+import { navigateToPublicPath } from '@/lib/paths'
 
 // ── Static data ─────────────────────────────────────────────────────────────
 
@@ -117,7 +118,7 @@ export default function UploadPage() {
       if (c <= 0) {
         clearInterval(iv)
         sessionStorage.setItem('retailpulse:autoGuide', '1')
-        router.push('/')
+        if (!navigateToPublicPath('/')) router.push('/')
       }
     }, 1000)
     return () => clearInterval(iv)
@@ -373,7 +374,10 @@ export default function UploadPage() {
           </div>
           <div className="flex gap-3">
             <button
-              onClick={() => { sessionStorage.setItem('retailpulse:autoGuide', '1'); router.push('/') }}
+              onClick={() => {
+                sessionStorage.setItem('retailpulse:autoGuide', '1')
+                if (!navigateToPublicPath('/')) router.push('/')
+              }}
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors"
             >
               {t('upload.goToDashboard')}

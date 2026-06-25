@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import {
   LayoutDashboard, Users, CalendarRange, ShoppingCart,
   Star, TrendingUp, Brain, FlaskConical, Map,
@@ -13,6 +12,7 @@ import { MLParadigmCard, type MLParadigmCardProps } from '@/components/tour/MLPa
 import { TourStepCard, type TourStepCardProps } from '@/components/tour/TourStepCard'
 import { QuickReproducePanel } from '@/components/tour/QuickReproducePanel'
 import { useModelRegistry, useMetricsOverview } from '@/hooks/useApi'
+import { publicPath } from '@/lib/paths'
 
 // ── ML Paradigms definition ──────────────────────────────────────────────────
 function getParadigms(t: (k: string) => string): MLParadigmCardProps[] {
@@ -226,12 +226,12 @@ export default function TourPage() {
             >
               {t('tour.hero.startTour')} ↓
             </a>
-            <Link
-              href="/"
+            <a
+              href={publicPath('/')}
               className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted transition-colors"
             >
               {t('common.goToPage')}: {t('nav.dashboard')}
-            </Link>
+            </a>
           </div>
         </div>
       </div>

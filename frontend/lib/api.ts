@@ -1,7 +1,8 @@
 // API client — 所有 HTTP 請求都從這裡走
 // Use the deployed base path when the app is mounted below /p/<project>.
-const APP_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-const API_BASE = `${APP_BASE_PATH}/api`;
+import { publicPath } from './paths';
+
+const API_BASE = publicPath('/api');
 
 export function buildApiUrl(path: string, params?: Record<string, string | number | undefined>): string {
   let url = `${API_BASE}${path}`;

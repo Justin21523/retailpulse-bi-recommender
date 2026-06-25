@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { ArrowRight, type LucideIcon } from 'lucide-react'
 import { useI18n } from '@/contexts/I18nContext'
 import { cn } from '@/lib/utils'
+import { publicPath } from '@/lib/paths'
 
 export interface TourStepCardProps {
   step:        number
@@ -39,8 +39,8 @@ export function TourStepCard({
             <p className="text-xs text-muted-foreground mt-0.5">{description}</p>
           </div>
         </div>
-        <Link
-          href={href}
+        <a
+          href={publicPath(href)}
           className={cn(
             'flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors',
             'bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary',
@@ -48,7 +48,7 @@ export function TourStepCard({
         >
           {t('common.goToPage')}
           <ArrowRight className="w-3 h-3" />
-        </Link>
+        </a>
       </div>
 
       {/* Tech stack chips */}

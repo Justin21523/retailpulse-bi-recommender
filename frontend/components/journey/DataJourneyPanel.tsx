@@ -17,6 +17,7 @@ import { ForecastStage } from './stages/ForecastStage'
 import { RecommendationStage } from './stages/RecommendationStage'
 import { ABStage } from './stages/ABStage'
 import { InsightStage } from './stages/InsightStage'
+import { appPathname, navigateToPublicPath } from '@/lib/paths'
 
 const STAGE_COMPONENTS = [
   RawDataStage, CleaningStage, RFMStage, SegmentStage,
@@ -25,7 +26,7 @@ const STAGE_COMPONENTS = [
 ]
 
 export function DataJourneyPanel() {
-  const pathname = usePathname()
+  const pathname = appPathname(usePathname())
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(0)
@@ -70,7 +71,7 @@ export function DataJourneyPanel() {
     const stage = JOURNEY_STAGES[idx]
     if (pathname !== stage.path) {
       setPendingScroll(true)
-      router.push(stage.path)
+      if (!navigateToPublicPath(stage.path)) router.push(stage.path)
     } else {
       setTimeout(() => scrollToAndHighlight(stage.selector), 100)
     }

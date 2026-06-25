@@ -10,6 +10,7 @@ import { PAGE_TOURS, type TourStep } from '@/lib/tourSteps'
 import { SpotlightDecorator } from '@/components/journey/SpotlightDecorator'
 import { cn } from '@/lib/utils'
 import { useI18n } from '@/contexts/I18nContext'
+import { appPathname, navigateToPublicPath } from '@/lib/paths'
 
 // ---------------------------------------------------------------------------
 // Static data — built once at module level
@@ -57,7 +58,7 @@ const RING_CIRC = 2 * Math.PI * RING_R
 // Component
 // ---------------------------------------------------------------------------
 export function AppGuide() {
-  const pathname = usePathname()
+  const pathname = appPathname(usePathname())
   const router   = useRouter()
   const { t }    = useI18n()
 
@@ -105,7 +106,7 @@ export function AppGuide() {
     setStepIdx(idx)
     if (pathname !== step.path) {
       setPendingIdx(idx)
-      router.push(step.path)
+      if (!navigateToPublicPath(step.path)) router.push(step.path)
     } else {
       setTimeout(() => executeHighlight(step), 100)
     }
