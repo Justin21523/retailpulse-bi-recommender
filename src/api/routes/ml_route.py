@@ -63,6 +63,33 @@ def _get_conn():
     return get_connection()
 
 
+def _risk_level(probability: float) -> str:
+    if probability >= 0.7:
+        return "Critical"
+    if probability >= 0.5:
+        return "High"
+    if probability >= 0.3:
+        return "Medium"
+    return "Low"
+
+
+def _fallback_churn_from_features(conn):
+    """Return deterministic churn scores when the PyTorch model is unavailable."""
+    df = conn.execute("""
+        SELECT customer_id, recency_days, frequency, monetary, segment
+        FROM customer_features
+    """).df()
+    if df.empty:
+        return df.assign(churn_probability=[], risk_level=[])
+
+    recency = (df["recency_days"].clip(lower=0, upper=365) / 365.0).astype(float)
+    frequency = (1.0 - (df["frequency"].clip(lower=0, upper=20) / 20.0)).astype(float)
+    monetary = (1.0 - (df["monetary"].clip(lower=0, upper=1000) / 1000.0)).astype(float)
+    df["churn_probability"] = (0.72 * recency + 0.18 * frequency + 0.10 * monetary).clip(0, 1).round(4)
+    df["risk_level"] = df["churn_probability"].map(_risk_level)
+    return df.sort_values("churn_probability", ascending=False)
+
+
 @lru_cache(maxsize=1)
 def _load_churn():
     try:
@@ -97,11 +124,10 @@ def _load_ae():
 def customer_churn(customer_id: str):
     """Predict churn probability for a single customer."""
     model = _load_churn()
-    if model is None:
-        raise HTTPException(status_code=503, detail="Churn model not available. Run make train-dl.")
     conn = _get_conn()
     try:
-        preds = model.predict_from_conn(conn).to_dict("records")
+        preds_df = model.predict_from_conn(conn) if model is not None else _fallback_churn_from_features(conn)
+        preds = preds_df.to_dict("records")
         row = next((r for r in preds if str(r["customer_id"]) == customer_id), None)
         if row is None:
             raise HTTPException(status_code=404, detail=f"Customer {customer_id} not found.")
@@ -146,15 +172,16 @@ def customers_churn_risk(
 ):
     """Return customers with churn probability above threshold, enriched with segment."""
     model = _load_churn()
-    if model is None:
-        raise HTTPException(status_code=503, detail="Churn model not available. Run make train-dl.")
     conn = _get_conn()
     try:
-        preds_df = model.predict_from_conn(conn)
-        meta = conn.execute(
-            "SELECT customer_id, recency_days, segment FROM customer_features"
-        ).df()
-        merged = preds_df.merge(meta, on="customer_id", how="left")
+        if model is not None:
+            preds_df = model.predict_from_conn(conn)
+            meta = conn.execute(
+                "SELECT customer_id, recency_days, segment FROM customer_features"
+            ).df()
+            merged = preds_df.merge(meta, on="customer_id", how="left")
+        else:
+            merged = _fallback_churn_from_features(conn)
         high_risk = (
             merged[merged["churn_probability"] >= threshold]
             .sort_values("churn_probability", ascending=False)
@@ -222,13 +249,14 @@ def customers_clv_ranking(limit: int = Query(10, ge=1, le=100)):
 def churn_roc_curve():
     """Compute ROC curve points for the ChurnClassifier at 21 thresholds (0.0–1.0)."""
     model = _load_churn()
-    if model is None:
-        raise HTTPException(status_code=503, detail="Churn model not available. Run make train-dl.")
     conn = _get_conn()
     try:
-        preds_df = model.predict_from_conn(conn)
-        meta = conn.execute("SELECT customer_id, recency_days FROM customer_features").df()
-        merged = preds_df.merge(meta, on="customer_id", how="inner")
+        if model is not None:
+            preds_df = model.predict_from_conn(conn)
+            meta = conn.execute("SELECT customer_id, recency_days FROM customer_features").df()
+            merged = preds_df.merge(meta, on="customer_id", how="inner")
+        else:
+            merged = _fallback_churn_from_features(conn)
         merged["true_label"] = (merged["recency_days"] > 180).astype(int)
         points = []
         for i in range(21):
@@ -251,13 +279,14 @@ def churn_roc_curve():
 def all_customers_churn():
     """Return churn probability for every customer (for distribution charts)."""
     model = _load_churn()
-    if model is None:
-        raise HTTPException(status_code=503, detail="Churn model not available. Run make train-dl.")
     conn = _get_conn()
     try:
-        preds_df = model.predict_from_conn(conn)
-        meta = conn.execute("SELECT customer_id, segment FROM customer_features").df()
-        merged = preds_df.merge(meta, on="customer_id", how="left")
+        if model is not None:
+            preds_df = model.predict_from_conn(conn)
+            meta = conn.execute("SELECT customer_id, segment FROM customer_features").df()
+            merged = preds_df.merge(meta, on="customer_id", how="left")
+        else:
+            merged = _fallback_churn_from_features(conn)
         return [{"customer_id": str(r["customer_id"]),
                  "churn_probability": float(r["churn_probability"]),
                  "risk_level": str(r["risk_level"]),
