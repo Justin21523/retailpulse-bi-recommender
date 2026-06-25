@@ -30,7 +30,7 @@ dependencies = [
     "implicit>=0.7",
     "scipy>=1.13",
     "gensim>=4.3",
-    # torch is installed separately via `make install-dl` (CPU wheel)
+    "torch>=2.3",
     # sentence-transformers is installed with torch
 ]
 
