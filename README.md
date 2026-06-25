@@ -181,6 +181,29 @@ docker compose up api app               # Start services
 3. Update `SAMPLE_DATA_PATH=data/raw/online_retail.xlsx` in `.env`
 4. Run `make etl`
 
+## Portfolio UI Demo Media
+
+The RetailPulse UI has a Playwright-verified demo flow with screenshots and a
+recorded walkthrough.
+
+- Full walkthrough video: [`docs/playwright/videos/full-verification.webm`](docs/playwright/videos/full-verification.webm)
+- Verification manifest: [`docs/playwright/verification-manifest.md`](docs/playwright/verification-manifest.md)
+- Portfolio media manifest: [`docs/playwright/portfolio-media.json`](docs/playwright/portfolio-media.json)
+- Remote smoke results: [`docs/playwright/remote-smoke/results.json`](docs/playwright/remote-smoke/results.json)
+
+![Dashboard](docs/playwright/screenshots/desktop/dashboard-01.png)
+![Customers RFM analysis](docs/playwright/screenshots/desktop/customers-01.png)
+![Basket analysis](docs/playwright/screenshots/desktop/basket-01.png)
+![Recommendation engine](docs/playwright/screenshots/desktop/recommendations-01.png)
+![Sales forecast](docs/playwright/screenshots/desktop/forecast-01.png)
+![ML insights](docs/playwright/screenshots/desktop/ml-insights-01.png)
+![A/B testing](docs/playwright/screenshots/desktop/ab-testing-01.png)
+![Remote portfolio detail](docs/playwright/remote-smoke/portfolio-detail.png)
+
+The verification covers all core navigation pages, long-page segmented
+screenshots, mobile screenshots, remote portfolio publication, the deployed app
+reverse proxy, and API health.
+
 ## Playwright Verification
 
 Latest verification was run on June 25, 2026 with:
@@ -196,6 +219,9 @@ Result: `2 passed` covering desktop feature flows, mobile navigation, screenshot
 | Desktop screenshots | 26 files in [`docs/playwright/screenshots/desktop`](docs/playwright/screenshots/desktop) |
 | Mobile screenshots | 40 files in [`docs/playwright/screenshots/mobile`](docs/playwright/screenshots/mobile) |
 | Full verification video | [`docs/playwright/videos/full-verification.webm`](docs/playwright/videos/full-verification.webm) |
+| Evidence manifest | [`docs/playwright/verification-manifest.md`](docs/playwright/verification-manifest.md) |
+| Portfolio media manifest | [`docs/playwright/portfolio-media.json`](docs/playwright/portfolio-media.json) |
+| Remote screenshots | 10 files in [`docs/playwright/remote-smoke`](docs/playwright/remote-smoke) |
 
 Verified areas include dashboard navigation, upload sample flow, customer search/profile/recommendation jump, basket filters, recommendation tabs, forecast controls, ML insight tabs, A/B demo creation, tour page, and mobile route navigation.
 

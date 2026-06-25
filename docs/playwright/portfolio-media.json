@@ -1,0 +1,125 @@
+[
+  {
+    "id": "full-verification-video",
+    "type": "video",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/demo/full-verification.webm",
+    "poster": "/portfolio/projects/retailpulse-bi-recommender/screenshots/01-dashboard.png",
+    "alt": {
+      "zh-TW": "RetailPulse BI Recommender 的完整 Playwright 驗證錄影。",
+      "en": "Full Playwright verification recording of RetailPulse BI Recommender."
+    },
+    "title": {
+      "zh-TW": "完整功能驗證錄影",
+      "en": "Full Feature Verification Recording"
+    },
+    "caption": {
+      "zh-TW": "展示 dashboard、客戶分析、購物籃、推薦、預測、ML 洞察、A/B 測試、導覽與上傳流程。",
+      "en": "Shows dashboard, customer analytics, basket analysis, recommendations, forecasting, ML insights, A/B testing, tour, and upload flows."
+    },
+    "featured": true
+  },
+  {
+    "id": "dashboard-overview",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/01-dashboard.png",
+    "alt": {
+      "zh-TW": "RetailPulse 業務總覽 dashboard。",
+      "en": "RetailPulse business overview dashboard."
+    },
+    "title": {
+      "zh-TW": "業務總覽 Dashboard",
+      "en": "Business Overview Dashboard"
+    }
+  },
+  {
+    "id": "customer-rfm",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/02-customers.png",
+    "alt": {
+      "zh-TW": "客戶 RFM 分群與生命週期分析頁。",
+      "en": "Customer RFM segmentation and lifecycle analytics page."
+    },
+    "title": {
+      "zh-TW": "客戶 RFM 分析",
+      "en": "Customer RFM Analysis"
+    }
+  },
+  {
+    "id": "basket-analysis",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/03-basket.png",
+    "alt": {
+      "zh-TW": "購物籃關聯規則與商品組合分析頁。",
+      "en": "Market basket association rules and product combination analysis page."
+    },
+    "title": {
+      "zh-TW": "購物籃分析",
+      "en": "Basket Analysis"
+    }
+  },
+  {
+    "id": "recommendation-engine",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/04-recommendations.png",
+    "alt": {
+      "zh-TW": "智慧推薦頁，包含協同過濾與商品推薦流程。",
+      "en": "Recommendation page with collaborative filtering and product recommendation flows."
+    },
+    "title": {
+      "zh-TW": "智慧推薦系統",
+      "en": "Recommendation Engine"
+    }
+  },
+  {
+    "id": "sales-forecast",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/05-forecast.png",
+    "alt": {
+      "zh-TW": "銷售預測與時序模型比較頁。",
+      "en": "Sales forecasting and time-series model comparison page."
+    },
+    "title": {
+      "zh-TW": "銷售預測",
+      "en": "Sales Forecast"
+    }
+  },
+  {
+    "id": "ml-insights",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/06-ml-insights.png",
+    "alt": {
+      "zh-TW": "ML 洞察中心，呈現 CLV、異常偵測與模型比較。",
+      "en": "ML insights center with CLV, anomaly detection, and model comparison."
+    },
+    "title": {
+      "zh-TW": "ML 洞察中心",
+      "en": "ML Insights Center"
+    }
+  },
+  {
+    "id": "ab-testing",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/screenshots/07-ab-testing.png",
+    "alt": {
+      "zh-TW": "A/B 測試框架與統計顯著性分析頁。",
+      "en": "A/B testing framework and statistical significance analysis page."
+    },
+    "title": {
+      "zh-TW": "A/B 測試框架",
+      "en": "A/B Testing Framework"
+    }
+  },
+  {
+    "id": "remote-portfolio-detail",
+    "type": "image",
+    "src": "/portfolio/projects/retailpulse-bi-recommender/remote/portfolio-detail.png",
+    "alt": {
+      "zh-TW": "RetailPulse 在 Justin Portfolio 作品詳情頁的遠端驗證截圖。",
+      "en": "Remote verification screenshot of the RetailPulse detail page in Justin Portfolio."
+    },
+    "title": {
+      "zh-TW": "Portfolio 遠端作品頁",
+      "en": "Remote Portfolio Detail Page"
+    }
+  }
+]
